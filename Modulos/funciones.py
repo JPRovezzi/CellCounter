@@ -122,7 +122,7 @@ def mkcircle(image):
         image[y, x, 2] = 0
   return image
 
-def mkcircle_petri(offset,background):
+def mkcircle_petri(offset,background,dish):
   """Borrar imagen fuera del circulo.
 
   Toma una imagen de un rectángulo y, asumiendo
@@ -134,6 +134,8 @@ def mkcircle_petri(offset,background):
     Imagen a recortar
   """
   #image = petri
+  #global petri
+  petri = dish
   height = petri.shape[0]
   width = petri.shape[1]
   for y in range(height):
@@ -207,7 +209,8 @@ def get_area(image, msg):
 
 def set_threshold(thresh_min, thresh_max):
   global thresh_min_out 
-  global thresh_max_out 
+  global thresh_max_out
+  global desired_colony 
   # Binarizar colonia deseada y entrenar kmeans
   desired_gray = cv2.cvtColor(desired_colony, cv2.COLOR_BGR2GRAY)
   desired_bin = (
